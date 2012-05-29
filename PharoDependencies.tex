@@ -1,0 +1,19 @@
+Here the topic is the same that the previous one. We want to flag dependencies in order to isolate modules, but here it's for the whole system.
+
+\goal Analyze (and fix) all \gls{Pharo} bad dependencies in order to have isolated modules easily pluggable and un-pluggable and not circular references in class initialization.
+
+\problems 
+\begin{itemize}
+	\item Which tool to use to analyze a whole system ?
+	\item How to automatize the creation of a new bug entry ?
+	\item How to break circular references ?
+\end{itemize}
+
+\solutions 
+\begin{itemize}
+	\item Moose have been used here too to build a tool that flag Pharo packages dependencies (about 1300 dependencies);
+	\item We haven't found how to use the Google interface to automatize the creation of bug entries, so we have to add each bad dependence one by hand.
+	\item To break circular references, there is no automatic answer. Each case has to be analyzed and deeply understood before being fixed.
+\end{itemize}
+
+\inanutshell Now that all the bad dependencies are flagged, it's easier to focus on important things to fix.

@@ -1,0 +1,17 @@
+In order to reduce the amount of bad dependencies during the kernel isolation (see section~\ref{KernelIsolation} page~\pageref{KernelIsolation}).
+
+\goal Minimise Pharo kernel dependencies by fixing classes to ease the Hazel kernel isolation.
+
+\problems 
+\begin{itemize}
+	\item How to identify bad dependencies ?
+	\item How to fix them ?
+\end{itemize}
+
+\solutions
+\begin{itemize}
+	\item To identify bad dependencies, we have used \gls{Moose} on \gls{Pharo} 1.2 and have manually flag each dependencies.
+	\item To fix them there is no magic formula, we have spent time on it, and we are far from having fix all bad dependencies. But a bug entry was opened on the developers platform for each bad dependence.
+\end{itemize}
+
+\inanutshell 20 dependencies have already been fixed, but 40 bug entries are still open waiting for a fix.

@@ -1,0 +1,22 @@
+\paragraph{Context:} After the John Maloney's MicroSqueak, project has been released, we had a proof that the creation of a new kernel was possible, and we wanted to have this concept in \gls{Pharo}. Some other projects\footnote{mainly Chacharas, Spoon } have provided the tools to create new kernel, but with a different approach and not working anymore. Seed is the first project inpsired by \gls{Micro Squeak}.
+
+\goal The goal of the project was to implement a process able to dynamically create a new kernel starting from a living image and a collection of classes the new kernel must provide. In parallel, I had to fix the \gls{Pharo} structure in order to ease the previous process. 
+
+\problems The most important problems encountered were:
+	\begin{itemize}
+		\item What is \gls{Pharo} kernel ?
+		\item How to collect needed classes ?
+		\item How to create another kernel in a living image ?
+		\item How to isolate the kernel ?
+		\item Does the \gls{Pharo} structure allow you to easily separate modules ?
+		\item How to bootstrap the kernel ?
+		\item How to create a new image with this kernel ?
+	\end{itemize}
+
+\paragraph{Solution:} After structural analysis, I have implemented a script which takes a list of classes as an argument, and build an autonomous kernel with all the classes needed and wanted. I have also provided another script to serialize this kernel as a new image which is a real system fully working.
+\paragraph{Next Steps:}
+The next steps will be to explore another way for filling the new name space. Instead of copying objects for the current system, trying to have a file based declarative boostrap. We could also fix the whole structure to ease the kernel isolation, and this way having a better isolated kernel in \gls{Pharo}.
+
+\paragraph{Conclusion:} As a conclusion, Hazel provides tools to create a new isolated kernel, and also a new image with this kernel fully working. Working on the definition of a kernel, especially in \gls{Pharo} allowed us to define which classes \emph{are composing} the current kernel and which one \emph{should compose} the kernel. 
+
+Working on the system structure had also revealed some problems in the packages architecture and dependencies. 

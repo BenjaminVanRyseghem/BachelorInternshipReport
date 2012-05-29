@@ -1,0 +1,25 @@
+\ct{TextConstants} used to be an old pool dictionary stored as a global variable which was used to store and share information between text related classes. Since the old way of managing pool dictionaries was not good (using global dictionaries), \ct{SharedPool}s have been introduced. A \ct{SharedPool} is a special class designed to store constants variables and to be shared between other classes. You easily use them by specifying the \ct{poolDictionaries} field of a class.
+
+Back in 2006 all dictionaries which only store constants were migrated except TextConstants. The reason of the non migration was probably that it was too deep in the system and that it involved low level fixes.  In addition some applications started to use \ct{TextConstants} not only to share constants but also to act as a bag to store temporary values, defeating the purpose of a Pool Dictionary. 
+
+Due to that, if one browses all classes, and for each browse poolDictionaries, you can have a \ct{SharedPool} (i.e. a \ct{Class}) or \ct{TextConstants} (i.e. a \ct{Dictionary}). Of course those two objects don't have the same interface. So instead of differentiating cases, we have decided to fix the situation and to finally convert \ct{TextConstants} into a \ct{SharedPool}.
+
+\goal
+Write a script which can automatically retrieve information from \ct{TextConstants} (as a Dictionary), create a \ct{SharedPool} class named \ct{TextConstants}, then fill up this class with the retrieved information.
+
+\problems
+\begin{itemize}
+	\item How to differentiate constant values from variable ones ?
+	\item Where those methods can store information they used to store in \ct{TextConstants} ?
+	\item How avoid to rewrite all the methods ?
+\end{itemize}
+
+\solutions
+\begin{itemize}
+	\item To identify the problems, we read all methods invoking \ct{TextConstants} and finally found a method in \ct{Text class} which initialize \ct{TextConstants}, even if it is in a strange way. So we have invoked this method but on a dummy dictionary instead of \ct{TextConstants} to be able to retrieve all the variables name and value. With those information, it was easy to dynamically defined \ct{TextConstants} and it \ct{initialize} method.
+	\item We have decided to add a class variable in \ct{TextConstants} named \emph{TextSharedInformation} which is a \ct{Dictionary} used to store values.
+	\item To avoid to rewrite all by hand, we built a script that automatically adds \ct{TextConstants} in the poolDictionaries of classes which need it. When \ct{TextConstants} was used has a \ct{Dictionary}, the code is changed to invoke \emph{TextSharedInformation} instead. But when \ct{TextConstants} is used as a value holder, we had to change methods manually. By chance, only two methods needed to be rewritten this way.
+\end{itemize}
+	
+\inanutshell now \ct{TextConstants} is a SharedPool and the whole system has been changed in order to use the new design of \ct{TextConstants}. All variables founded in the field poolDictionaries are classes.
+	
