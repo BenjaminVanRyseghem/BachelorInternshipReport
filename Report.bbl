@@ -1,0 +1,21 @@
+\begin{thebibliography}{1}
+
+\bibitem{Bobr93a}
+D.~G. Bobrow, R.~P. Gabriel, and J.~White.
+\newblock {CLOS} in context --- the shape of the design.
+\newblock In A.~Paepcke, editor, {\em Object-Oriented Programming: the CLOS
+  perspective}, pages 29--61. MIT Press, 1993.
+
+\bibitem{Coin87a}
+P.~Cointe.
+\newblock Metaclasses are first class: the {ObjVlisp} model.
+\newblock In {\em Proceedings OOPSLA '87, ACM SIGPLAN Notices}, volume~22,
+  pages 156--167, Dec. 1987.
+
+\bibitem{Maes87b}
+P.~Maes.
+\newblock {\em Computational {Reflection}}.
+\newblock PhD thesis, Laboratory for Artificial Intelligence, Vrije
+  Universiteit Brussel, Brussels Belgium, Jan. 1987.
+
+\end{thebibliography}
