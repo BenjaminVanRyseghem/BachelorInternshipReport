@@ -1,4 +1,4 @@
-Currently student at the \emph{Universit\'{e} Lille 1} at Lille in the sixth semester of the licence Informatique\footnote{a computer science formation in three years} I had to do an internship for graduation in a research laboratory from 1$^{\mbox{\small st \normalsize}}$ April 2012 to 31$^{\mbox{\small th \normalsize}}$ June 2012. I have done this internship into the RMoD team working for the \gls{INRIA}. I already did my DUT graduation internship \footnote{from 1$^{\mbox{\small st \normalsize}}$ Novembre 2010 to 1$^{\mbox{\small st \normalsize}}$ April 2011} is this team on the same project.
+Currently student at the \emph{Universit\'{e} Lille 1} at Villeneuve d'Ascq in the sixth semester of the licence Informatique\footnote{a computer science formation in three years} I had to do an internship for graduation in a research laboratory from 1st April 2012 to 31th June 2012. I have done this internship in the RMoD team working for the Inria, formerly named INRIA for "Institut National de Recherche en Informatique et en Automatique". I already did my DUT graduation internship \footnote{from 1st Novembre 2010 to 1st April 2011} is this team on the same project.
 
 Few weeks before the beginning of my previous intership, \emph{John Maloney} released one of his projects named \gls{Micro Squeak} consisting in a proof of concept of the creation of a new kernel (the core classes and methods of the system).
 %%NA: ca me semble avance de parle d'image a ce moment
@@ -7,13 +7,13 @@ We have decided to port this project in \gls{Pharo}. It is named the project \em
 
 \paragraph{Context:}
 %%NA: added some sentences to clarify things here and later
-Smalltalk is an object language that has the property to save the entire state of the environment from one session to the other in a file called an image. An image contains a snapshot of the Smalltalk environment's memory. It basically contains all the classes and objects of the system at the moment it was saved. The Smalltalk environment is a ``leaving thing'', it is never created from scratch, but every new version is evolved from a previous image. For example, there are very probably in all current smalltalk images, objects that were created back in the first version of the first Smalltalk in the 70's (e.g. the ``true'' and ``false'' objects).
+Smalltalk is an object-oriented language that has the property to save the entire state of the environment from one session to the other in a file called an image. An image contains a snapshot of the Smalltalk environment's memory. It basically contains all the classes and objects of the system at the moment it was saved. The Smalltalk environment is a ``living thing'', it is never created from scratch, but every new version is evolved from a previous image. For example, there are very probably in all current smalltalk images, objects that were created back in the first version of the first Smalltalk in the 70's (e.g. the ``true'' and ``false'' objects).
 %%NA: end of additions
 %NA: ne pas mettre le nom en italic.
-After \emph{John Maloney}'s project has been released, we had a proof that the creation of a new kernel was possible, and we wanted to have this concept in \gls{Pharo}. Some other projects\footnote{mainly Chacharas, Spoon } have provided the tools to create new kernels, but with a different approach. \emph{Seed} is the first project inspired by \gls{Micro Squeak}.
+After \emph{John Maloney}'s project was released, we had a proof that the creation of a new kernel was possible, and we wanted to have this concept in \gls{Pharo}. Some other projects\footnote{mainly Chacharas, Spoon } have provided the tools to create new kernels, but with a different approach. \emph{Seed} is the first project inspired by \gls{Micro Squeak}.
 
 \paragraph{Problems:}
-The problems are that \gls{Micro Squeak} is based on the version 3.7 of Squeak, and even if the project has been released few months ago, it had been developed in 2004. Due to that the project is not synchronized with the system anymore. Moreover, the system I used during my internship, \gls{Pharo} is a fork of Squeak. Pharo already got a large refactoring effort but it is still a monolithic system, with still a lot of useless or inefficient code. Because of that, it's quite difficult to define properly what the kernel is and to extract it without collecting irrelevant classes.
+The problems are that \gls{Micro Squeak} is based on the version 3.7 of Squeak, and even if the project has been released few months ago, it had been developed in 2004. Due to that the project is not synchronized with the lastest evolutions of the system anymore. Moreover, the system I used during my internship \gls{Pharo}, is a fork of Squeak. Pharo already got a large refactoring effort but it is still a monolithic system, with still a lot of useless or inefficient code. Because of that, it's quite difficult to define properly what the kernel is and to extract it without collecting irrelevant classes.
 
 \paragraph{Goals}
 The goal of the Hazelnut project is to automatically extract a kernel from a living \gls{Pharo} image and to bootstrap this kernel into an image. The process has to be automatic to be able to follow the \gls{Pharo} evolution. Moreover, in order to ease the kernel creation process, the \gls{Pharo} structure has to be fixed. So in a nutshell the goals of the project are:
@@ -36,7 +36,7 @@ My contributions to this project was to:
 		\item Work on \gls{Pharo} kernel analysis to define the kernel;
 		\item Work on the whole \gls{Pharo} system to flag the system weaknesses such as wrong dependencies between packages;
 		\item Work on different ways to generate a new image;
-		\item Write unitary tests;
+		\item Write unit tests;
 		\item Reduce the generated image size;
 		\item Set the initialization
 		\item Ensure the reinitialization of the generated system;

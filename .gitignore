@@ -6,4 +6,6 @@
 *.toc
 *.out
 *.glo
-
+*.gls
+*.glg
+*.blg

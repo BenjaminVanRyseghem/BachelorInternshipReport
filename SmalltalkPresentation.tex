@@ -1,21 +1,21 @@
-\emph{\gls{Smalltalk}} is the language used in the team, therefore this is the language I used during my internship. To understand the challenges I faced I will briefly present \gls{Smalltalk} and its main characteristics.
+\emph{\gls{Smalltalk}} is the development environment used in the team, therefore this is the language I used during my internship. To understand the challenges I faced I will briefly present \gls{Smalltalk} and its main characteristics.
 
 \subsection {What is Smalltalk ?}
 
-\emph{\gls{Smalltalk}} is an object-oriented, reflective, dynamically typed programming languages. So let's explain each word:
+\emph{\gls{Smalltalk}} is an object-oriented, reflective, dynamically typed programming language. So let's explain each word:
 
 %@@NO SPACE before :?; in english@@
 
 \begin{itemize}
-	\item Object-oriented : in \gls{Smalltalk}, you manipulate objects which send messages (like in Java or C++);
-	\item Reflective : each object can inspect or modify its own structure at runtime (like Java, but to a much greater extent);
+	\item Object-oriented : \gls{Smalltalk} programs are made of objects which communicate using messages (like in Java or C++);
+	\item Reflective : any object can inspect or modify its own structure at runtime (like Java, but to a much greater extent);
 	\item Dynamically typed : variables don't have a type at compilation, but only when a value is stored in them at runtime;
-	\item \textit{Everything is an object}: everything is an object (a class, a message, a method, \dots)
+	\item \textit{Everything is an object}: objects are the sole kind of runtime value.
 \end{itemize}
 
 \subsection{Smalltalk basics}
 
-\gls{Smalltalk} is based on 2 classes which constitute the conceptual core of this system, \ct{Object} and \ct{Class} (see Figure~\ref{ClassObjectBootStrap}). Here you can see that each element cannot exist alone. The bootstrap is the process which leads to this state. However, since \ct{Class} and \ct{Object} needs other objects such as string, characters, stream, numbers\dots the real bootstrap is more complex.
+\gls{Smalltalk} is based on two classes which constitute the conceptual core of this system, \ct{Object} and \ct{Class} (see Figure~\ref{ClassObjectBootStrap}). Here you can see that each element cannot exist alone. The bootstrap\footnote{the term \emph{bootstrap} is often attributed to Rudolf Erich Raspe's story \emph{The Surprising Adventures of Baron Munchausen}} is the process which leads to this state. However, since \ct{Class} and \ct{Object} needs other objects such as string, characters, stream, numbers\dots the real bootstrap is more complex.
 
 \begin{figure}[h]
 	\centering\includegraphics[height = 7cm]{figures/BootStrap}
@@ -25,7 +25,7 @@
 	
 The most important thing to know is that a bootstrap is a process where a system is initializing itself via its own execution. It's close to the \emph{Chicken or egg dilemma} where each one deeply depends on the other one (more details will be given in the next chapter, page~\pageref{BootStrap}).
 
-\subsection{Some basics code lines}
+\subsection{Some basic code lines}
 
 Here few examples of \gls{Smalltalk} code to know how to read further examples:
 
@@ -46,7 +46,7 @@ Here few examples of \gls{Smalltalk} code to know how to read further examples:
 	variable1 = variable2. \emph{true}
 	variable1 == variable2. \emph{false}
 \end{code}
-Here, we can see 5 things :
+Here, we can see five things :
 \begin{itemize}
 	\item \ct{| |} : it allows you to declare variables.
 	\item \ct{:=} : it is the assignment.
@@ -61,11 +61,11 @@ plus: integer1 andPlus: integer2
 
 \tab^ self + integer1 + integer2
 \end{code}
-Here we learn 3 new things:
+Here we learn three new things:
 \begin{itemize}
-	\item \ct{:} : the way to specify parameters to most methods.
+	\item \ct{the colon} : the way to specify parameters to most methods.
 	\item \ct{self} : the receiver of the method (similar to this in Java).
-	\item \ct{\^} : it allows you to return a value\footnotemark. By default a method returns \ct{self}.
+	\item \ct{the caret} : it allows you to return a value\footnotemark. By default a method returns \ct{self}.
 \end{itemize}
 \footnotetext{You can sometime see $\uparrow$ instead.}
 A method is often referred to by the notation \ct{Class$\gg$\#selector} to have an unique notation. So the method we just saw is noted \ct{Integer$\gg$\#plus:andPlus:}. 
@@ -94,7 +94,7 @@ Now, you know the syntax of \gls{Smalltalk}.
 
 The \emph{System Dictionary} is a dictionary which contains all the global variables, including all the classes of the system. In \gls{Pharo}, the variable \emph{Smalltalk} is, normally, the sole SystemDictionary of the system. We can notice that \emph{Smalltalk} is a global variable, so it contains itself.
 
-\subsection{Special Object Array}
+\subsection{Special object array}
 
 The \gls{Special Objects Array} is basically an array shared between an image and the \gls{VM}. It's an interface allowing the \gls{VM} to know where are special objects it needs.
 
@@ -114,11 +114,11 @@ Here I will give the first ten elements of the \gls{Special Objects Array}:
 	\item \dots
 \end{itemize}
 
-We can notice that the nineth element is \ct{Smalltalk}, the current SystemDictionary.
+We can notice that the ninth element is \ct{Smalltalk}, the current SystemDictionary.
 
-\subsection{The Virtual Machine}
+\subsection{The virtual machine}
 
-As some other languages (especially Java), Smalltalk's methods are converted then interpreted by a \gls{VM}. In fact, the Smalltalk compiler analyzes the code then createss a \ct{CompiledMethod} which is a representation of the method but including more information ready to be executed by a \emph{byteCode} interpreter or JustInTime translator:
+As in some other languages (especially Java), Smalltalk's methods are converted then interpreted by a \gls{VM}. In fact, the Smalltalk compiler analyzes the code then createss a \ct{CompiledMethod} which is a representation of the method but including more information ready to be executed by a \emph{byteCode} interpreter or JustInTime translator:
 \begin{itemize}\label{literal}
 	\item the \emph{byteCode} : the source code converted into a language that the \gls{VM} can interpret;
 	\item the \emph{literals} : they represent low level objects such as number true, false, strings that are referenced and read by the scanner at compilation time. \emph{Literals} especially store pointers to class referred into the source code.
@@ -179,7 +179,7 @@ Now, let's take a look at the corresponding \ct{CompiledMethod}
 			\item \ct{\#copy} : this literal represent the selector of the method. It doesn't appear in the \emph{byteCode} because it's not needed (moreover, historically, methods used to be anonymous).
 			\item \ct{\#String->String} : this literal refers to the class of the method.
 		\end{itemize}
-		You can notice that \ct{new} and \ct{at:put:} are not in the literal. It is due to the fact that those methods are \emph{special byteCodes}
+		You can notice that \ct{new} and \ct{at:put:} are not in the literal. This is due to the fact that those methods are \emph{special byteCodes}
 \end{itemize}
 
 It's important to keep in mind that all methods points to the current SystemDictionary through their literals, but you do not have to be able to read or understand the \emph{byteCode} because it's a very low level tool. Moreover, \emph{byteCode} is rarely read by developers.

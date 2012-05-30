@@ -10,7 +10,7 @@
 %So at this point, I was able to select the classes then to copy them into the Hazel SystemDictionary, but references still point to \gls{Pharo} classes (see Figure~\ref{ClassesCopy}).
 
 \goal
-The goal of this part is to create an alternative SystemDictionary (a SystemDictionary is a namespace holding all the classes of the system) starting from the \gls{Pharo} one and to collect classes which are needed to build the kernel. 
+The goal of this part is to create an alternative SystemDictionary (a SystemDictionary is a namespace holding all the classes of the system) starting from the existing one in \gls{Pharo}, and to collect classes which are needed to build the kernel. 
 
 \problems
 \begin{itemize}
@@ -20,7 +20,7 @@ The goal of this part is to create an alternative SystemDictionary (a SystemDict
 
 \solutions
 \begin{itemize}
-	\item A first naive approach is to collect every classes \ct{Object} depends on in order to have an autonomous system. But due to bad dependencies in the system, the kernel collected this way contains half of the \gls{Pharo} classes. This is clearly not working. Therefore we have decided to have another approach. The second and final approach is to provide to the builder the list of classes the user wants in the new kernel plus some classes absolutely needed by the system\footnote{as \ct{Object}, \ct{ProtoObject} or \ct{MethodContext} for example}. The problem is that we had to determine which classes are the absolutely needed ones. In order to answer this question, a tool to analyze classes dependencies has been written and recursively used starting from the Kernel package until we had a quite autonomous kernel composed of around 200 classes\footnote{\gls{Pharo} contains around 1800 classes}. This tool also flags bad dependencies, but this part will be exposed in the next chapter (page~\pageref{KernelIsolation}). 
+	\item A first naive approach is to collect every class \ct{Object} depends on in order to have an autonomous system. But due to bad dependencies in the system, the kernel collected this way contains half of the \gls{Pharo} classes. This is clearly not satisfying. Therefore we have decided to have another approach. The second and final approach is to provide to the builder the list of classes the user wants in the new kernel plus some classes absolutely needed by the system\footnote{as \ct{Object}, \ct{ProtoObject} or \ct{MethodContext} for example}. The problem is that we had to determine which classes are the absolutely needed ones. In order to answer this question, a tool to analyze classes dependencies has been written and recursively used starting from the Kernel package until we had a quite autonomous kernel composed of around 200 classes\footnote{\gls{Pharo} contains around 1800 classes}. This tool also flags bad dependencies, but this part will be exposed in the next chapter (page~\pageref{KernelIsolation}). 
 
 
 	\item MicroSqueak's solution to fill up the new \ct{SystemDictionary} is to recompile needed classes with a prefix and then to collect them. It's quite efficient when you have 20 classes to copy, but here we have the constraints that we do not know by advance what we will copy and then we want to be as fast as possible. 

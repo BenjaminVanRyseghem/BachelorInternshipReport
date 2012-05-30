@@ -3,15 +3,15 @@
 \problems
 \begin{itemize}
 	\item What need to be initialized ?
-	\item Ho to reinitialized class variables ?
-	\item How to reinitialize classes in the good order ?
+	\item How to reinitialize class variables ?
+	\item How to reinitialize classes in the correct order ?
 \end{itemize}
 
 \solutions
 \begin{itemize}
-	\item We know that every class variables has been set to nil during the process, so they need to be initialized to make the system works. But is there any references to a singleton that may have not been initialized ? I still do not know the answer, neither how to find such dependencies, except by checking every dependencies by hand.
-	\item Class variables should be initialized when the class they belong to is initialized. To ensure that, we have checked by hand every classes which belong to the kernel, and check if class variables are initialized. If not, we have changed the class initialization to ensure every class variables initialization.
-	\item But then, how to initialized classes ? You can have situations where two classes depend on each other for initialization (see the following example).
+	\item We know that each class variable has been set to nil during the process, so they need to be initialized to make the system works. But are there any references to a singleton that may have not been initialized ? I still do not know the answer, neither how to find such dependencies, except by checking each dependency by hand.
+	\item Class variables should be initialized when the class they belong to is initialized. To ensure that, we checked by hand all classes which belong to the kernel, and ensured that class variables are initialized. If not, we have fixed it.
+	\item But then, how to initialize classes ? You can have situations where two classes depend on each other for initialization (see the following example).
 	\begin{code}{}\label{initializationCross}
 A class>>#initialize
 	
@@ -23,6 +23,6 @@ B class>>#initialize
 \tab myClassVarWhichShouldEqual1 := A myClassVarWhichShouldEqual1.
 \tab myClassVarWhichShouldEqual2 := 2.
 	\end{code}
-In this case, which class to initialize first, A or B ? Since there is no obvious answer and that usually such circular dependencies are pointing a bad design, the solution is to fix this kind of dependencies.
+In this case, which class to initialize first, A or B ? Since there is no obvious answer and that usually such circular dependencies are pointing to a bad design, the solution is to fix this kind of dependencies.
 \end{itemize}
 	

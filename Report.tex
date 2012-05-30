@@ -15,6 +15,7 @@
 \usepackage{hyperref}
 \usepackage[]{glossaries}
 \usepackage{pdfpages}
+\usepackage{fixltx2e} % for \textsuperscript
 \usepackage{color}
 \input{macros}
 
@@ -143,9 +144,9 @@
 
 Firstly I will introduce the work environment I used to live in during my internship in three parts, the institution I was working for, the team I was working in and the language I was working with.
 
-	\section{INRIA}\input{INRIA.tex}
+	\section{Inria}\input{INRIA.tex}
 	\section{The RMoD Team}\input{RMoD.tex}
-	\section{Smalltalk Presentation in a Nutshell}\input{SmalltalkPresentation.tex}
+	\section{Smalltalk presentation in a nutshell}\input{SmalltalkPresentation.tex}
 
 %------------------------------------------------------------%
 %									%
@@ -157,8 +158,8 @@ Firstly I will introduce the work environment I used to live in during my intern
 
 In this chapter we first define what is a system bootstrap and give some related definitions, then we present the current problems and the goals of our work.
 
-	\section{Definitions and Benefits}\input{DefinitionsAndBenefits.tex}
-	\section{Current Problems in Pharo}\input{CurrentProblemsInPharo.tex}\label{BootStrap}
+	\section{Definitions and benefits}\input{DefinitionsAndBenefits.tex}
+	\section{Current problems in Pharo}\input{CurrentProblemsInPharo.tex}\label{BootStrap}
 	\section{Goals of the project}\input{GoalsOfTheProject.tex}
 
 
@@ -169,21 +170,19 @@ In this chapter we first define what is a system bootstrap and give some related
 %------------------------------------------------------------%
 \chapter{Hazelnut}
 
-Hazelnut is one of the \textbf{Seed} project, where \textbf{Seed} was originally composed by different projects whose goal is to generate new kernels, all based on the project \emph{Micro-Squeak} (Squeak is another implementation of Smalltalk)
-For now we essentially distinguish two of them. 
+Hazelnut is one of the \textbf{Seed} projecst, where \textbf{Seed} was originally composed by different projects whose goal is to generate new kernels, all based on the project \emph{Micro-Squeak}.
+For now we essentially distinguish two of them:
 \begin{itemize}
 	\item PineKernel: it is a port of \gls{Micro Squeak} in Pharo
 	\item Hazelnut: it is the building of a kernel in Pharo starting from the Pharo kernel.
-	%	\item Walnut : based on Hazelnut, it should includes more classes
-	%	\item Coconut : based on Walnut it should includes more classes
 \end{itemize}
 
 This project is composed by three different parts, the kernel collection, the kernel isolation and finally the image creation.
 
-	\section{Kernel Class Identification}\input{KernelCreation.tex}
-	\section{Kernel Isolation}\input{KernelIsolation.tex}\label{KernelIsolation}
-	\section{Image Creation}\input{ImageCreation.tex}
-	\section{Image Initialization}\input{ImageInitialization.tex}
+	\section{Kernel creation}\input{KernelCreation.tex}
+	\section{Kernel isolation}\input{KernelIsolation.tex}\label{KernelIsolation}
+	\section{Image creation}\input{ImageCreation.tex}
+	\section{Image initialization}\input{ImageInitialization.tex}
 
 
 
@@ -202,15 +201,15 @@ To ease the kernel creation process, the system has had to be fixed or at least 
 \end{itemize}
 
 	\section{Text Constants}\label{TextConstants}\input{TextConstants.tex}
-	\section{Kernel Fix}\label{KernelFixes}\input{KernelFix.tex}
-	\section{Pharo Dependencies}\input{PharoDependencies.tex}
+	\section{Kernel fix}\label{KernelFixes}\input{KernelFix.tex}
+	\section{Pharo dependencies}\input{PharoDependencies.tex}
 
 
 
 
 \chapter{Conclusion}
-	\section{Technical Results}\input{TechnicalBilan}
-	\section{Human Results} \input{HumanBilan}
+	\section{Technical results}\input{TechnicalBilan}
+	\section{Human results} \input{HumanBilan}
 	\section{Conclusion} \input{Conclusion}
 
 %\backmatter

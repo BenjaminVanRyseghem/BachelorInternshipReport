@@ -1,6 +1,6 @@
 The current structure of \gls{Pharo} is a problem for creating easily a bootstrap at different levels:
 \begin{itemize}
-	\item \gls{Pharo} has still monolithic structure with a lot of old code (even though all our efforts are on that);
-	\item There is structural hidden dependencies requiring deep analysis to be revealed. For example, Stream depends on Compiler while it should be the inverse;
-	\item The definition of the \gls{Pharo}'s kernel is fuzzy and dispatched through different packages which aren't autonomous and self contained.
+	\item \gls{Pharo} has a monolithic structure with a lot of old code (even though all our efforts are on that);
+	\item There are hidden structural dependencies requiring deep analysis to be revealed. For example, Stream depends on Compiler while it should be the inverse;
+	\item The definition of what is part of the \gls{Pharo} kernel is fuzzy and dispatched through different packages which aren't autonomous and self contained.
 \end{itemize}

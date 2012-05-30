@@ -39,7 +39,7 @@
 
 
 Now that the kernel is created, we need to isolate it by removing dependencies 
-to the \gls{Pharo} world. There is two different types of dependencies which need to be fixed.
+to the \gls{Pharo} world. There are two different types of dependencies which need to be fixed.
 
 \subsection{References to unwanted classes}
 
@@ -56,17 +56,17 @@ to the \gls{Pharo} world. There is two different types of dependencies which nee
 \begin{itemize}
 	\item There are two places where unwanted references can be found:
 		\begin{itemize}
-			\item In a method: in a method literal there are references to invoke classes (see page~\pageref{literal}). Due to that, we can found references to unwanted classes;
+			\item In a method: in a method literal there are references to invoke classes (see page~\pageref{literal}). Due to that, we can find references to unwanted classes;
 			\item In a class variable\footnote{a class variable is a variable shared by all the instances of a class}: we can have an instance of an unwanted class or just an unwanted class itself.
 		\end{itemize}
-		The solution adopted is to check its \ct{methodDictionary} and class variables during class copy. If unwanted references are found, the following solution is applied.
-	\item This is the key point of this cleaning step.
+		The solution adopted is to check a class \ct{methodDictionary} and its class variables during class copy. If unwanted references are found, the following solution is applied.
+	\item Removing dependencies is the key point of this cleaning step.
 	
 	For class variables, the solution was to set them to nil (in the minimal kernel creation process, only one class variable had to be set this way (\ct{HaloFont} from \ct{StandardFonts}).
 
 		
-	For methods we have considered several solutions. Our first thought was to remove the method and to recursively remove the sender of the method. But due to class structure, we removed that way almost all methods of the kernel. Then we have though to create a \emph{NullPattern} object implementing all the methods removed. The problem was to find which kind of answer is expected from each method, and how to dynamically replace the sender in the code source. Finally we chose to remove the method and to keep the senders.
-	\item We haven't found a solution to this question. %Except if you have control on each methods in your kernel, it will be almost impossible to be sure that your system is safe.
+	For methods we have considered several solutions. Our first thought was to remove the method and to recursively remove the sender of the method. But due to class structure,this would have removed almost all methods of the kernel. Then we thought about creating a \emph{NullPattern} object implementing all the removed methods. The problem was to find which kind of answer is expected from each method, and how to dynamically replace the sender in the code source. Finally we chose to remove the method and to keep the senders.
+	\item We haven't found a solution to ensure that you are not creating an unstable system.
 As long as your system can be changed, you can't certify that your kernel is totally functional.
 We are working on a better isolation of the \gls{Pharo} kernel to reduce as much as possible the number of references (see Section~\ref{KernelFixes} page~\pageref{KernelFixes} ).
 \end{itemize}
@@ -81,9 +81,9 @@ We are working on a better isolation of the \gls{Pharo} kernel to reduce as much
 \end{figure}
 
 \newpage
-\subsection{Reroute dependencies from original classes to Hazel classes}
+\subsection{Dependencies from Hazel classes to original classes}
 
-\goal Here we want to reroute dependencies from \gls{Pharo} classes to Hazel classes to have only intern references in the Hazel kernel. Those references are stored into methods literals.
+\goal Here we want to reroute dependencies from Hazel classes to \gls{Pharo} classes to have only intern references in the Hazel kernel. Those references are stored into methods literals.
 
 \problems
 \begin{itemize}
